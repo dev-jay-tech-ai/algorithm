@@ -120,29 +120,58 @@ const freshman = (str) => {
     }
  }
 //13305
-const gas = () => {
-
+const gas = (input) => {
+    let arr = input.split('\n');
+    const distance = arr[1].split(' ').map(v=>BigInt(v));
+    const cost = arr[2].split(' ').map(v=>BigInt(v));  
+    let min = cost[0];
+    for(let i=1; i<cost.length-1; i++) {
+        min = Math.min(cost[i],min);
+        cost[i] = min;
+    }
+    let total = BigInt(0);
+    for(let i=0; i<distance.length; i++) {
+        total += distance[i] * cost[i];
+    }
+    console.log(String(total))
+}
+//1931
+const meetingroom = (arr) => {
+    const input = arr.split('\n');
+    const sorted = input.slice(1).map((s) => s.split(' ').map(Number))
+    .sort((a,b) => {
+        if(a[1] === b[1]) return a[0] - b[0];
+        else return a[1] - b[1];
+    });
+    console.log(sorted)
+    let start = 0;
+    let cnt = 0;
+    for(let i=0; i<sorted.length; i++) {
+        if(start <= sorted[i][0]) {
+            cnt++;
+            start = sorted[i][1];
+        }
+        console.log(start)
+    }
+    console.log(cnt);
 }
 
-
-
-let input = `2
-5
-3 2
+let input = `11
 1 4
-4 1
-2 3
-5 5
-7
-3 6
-7 3
-4 2
-1 4
+3 5
+0 6
 5 7
-2 5
-6 1`;
+3 8
+5 9
+6 10
+8 11
+8 12
+2 13
+12 14`;
 
-console.log(freshman(input));
+console.log(meetingroom(input));
+// console.log(gas(input));
+// console.log(freshman(input));
 // console.log(sum(input));
 // console.log(atob(input));
 // console.log(atob(input));
