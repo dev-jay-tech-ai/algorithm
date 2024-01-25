@@ -155,21 +155,95 @@ const meetingroom = (arr) => {
     }
     console.log(cnt);
 }
+// 11509
+const balloon = (arr) => {
+    let result = 0;
+    const input = arr.split('\n');
+    const balloon = input[1].split(' ').map(Number);
+    for(let i=0; i<balloon.length; i++) {
+        let target = balloon[i];
+        for(let j=i+1; j<balloon.length; j++) {
+            console.log(balloon[i], balloon[j]);
+            if(target-balloon[j] === 1) {
+                target = balloon.splice(j,1);
+                j++;
+                console.log(balloon)
+            }
+        }
+        result++;
+    }
+    console.log(result);
+}
+// 9009
+const fibonacci = (arr) => {
+    const input = arr.split(' ').map(Number);
+    let result = 0;
+    const balls = input[0];
+    const baskets = input[1];
+    let sum = 0;
+    let i = 0;
+    while(sum<=baskets) {
+        sum += i++;
+        console.log(sum);
+    }
+    if(sum > balls) result = -1;
+    else {
+        let tmp = Array(baskets).fill(parseInt(balls/baskets));
+        tmp[tmp.length-1] += (balls%baskets);
+        let min = Math.min(...tmp);
+        let max = Math.max(...tmp);
+        console.log(min-1,max+1)
+        result = (max+1) - (min-1);
+    }
+    console.log(res)
+}
+// 17609
+const palindrome = (arr) => {
+    let input = arr.split('\n');
+    let result;
+    let len = Number(input[0]);
+    let strings = input.slice(1);
+    const isPalindrome = (target,left,right) => {
+        while(left<right) {
+            if(target[left] === target[right]) {
+                left++;
+                right--;
+            } else return false;
+        }
+        return true;
+    }
+    let p1 = 0;
+    let p2 = len;
+    for(let i=0; i<len; i++) {
+        let reverse = strings[i].split('').reverse().join('');
+        console.log(strings[i],reverse)
+        if(strings[i]===reverse) result = 0;
+        else {
+            while(p1<p2) {}
+        }
+    }
+    console.log(result);
+}
+// 1493
+const boxes = () => {
 
-let input = `11
-1 4
-3 5
-0 6
-5 7
-3 8
-5 9
-6 10
-8 11
-8 12
-2 13
-12 14`;
+}
 
-console.log(meetingroom(input));
+let input  = `7
+abba
+summuus
+xabba
+xabbay
+comcom
+comwwmoc
+comwwtmoc`;
+let _input = `5
+2 1 5 4 3`;
+
+console.log(palindrome(input));
+// console.log(fibonacci(input));
+// console.log(balloon(input));
+// console.log(meetingroom(input));
 // console.log(gas(input));
 // console.log(freshman(input));
 // console.log(sum(input));
